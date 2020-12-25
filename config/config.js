@@ -21,7 +21,7 @@ export default defineConfig({
   },
   define: {
     'process.env.BUILD_TIME': new Date().getTime(),
-    'process.env.API_HOST': 'PLACEHOLDER_API_HOST',
+    'process.env.API_HOST': 'http://127.0.0.1:7001',
   },
   hash: true,
   dva: {

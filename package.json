@@ -22,6 +22,7 @@
   "dependencies": {
     "@umijs/preset-react": "1.x",
     "antd": "^3.x",
+    "axios": "^0.21.1",
     "compression-webpack-plugin": "^6.1.1",
     "umi": "^3.3.3"
   },
