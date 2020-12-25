@@ -6,6 +6,7 @@ import logo from '../../public/favicon.png';
 const { Content } = Layout;
 const ICON_LIST = {
   home: 'appstore',
+  list: 'appstore',
 };
 
 export default (props) => {
@@ -18,6 +19,8 @@ export default (props) => {
   const [key, setKey] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
+  console.log(routes);
+
   function calcRoutes(list, parentNode) {
     return list.filter((item) => {
       if (item.parentNode === parentNode) {
@@ -29,7 +32,9 @@ export default (props) => {
     });
   }
   function initRoutes(routes) {
-    const routesTemp = routes.splice(0, routes.length - 2);
+    const routesTemp = routes.filter(
+      (item) => item.path !== '/' && item.path !== '/index.html',
+    );
     routesTemp.forEach((item) => {
       const pathArr = item.path.split('/');
       item.name = pathArr[pathArr.length - 1];
