@@ -6,3 +6,10 @@ export function queryList() {
     url: `/student`,
   });
 }
+
+export function queryDetail(id) {
+  return authAxios({
+    method: 'get',
+    url: `/student/${id}`,
+  });
+}
