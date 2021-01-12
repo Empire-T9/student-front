@@ -19,8 +19,6 @@ export default (props) => {
   const [key, setKey] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
-  console.log(routes);
-
   function calcRoutes(list, parentNode) {
     return list.filter((item) => {
       if (item.parentNode === parentNode) {
