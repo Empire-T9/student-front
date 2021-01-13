@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { history } from 'umi';
-import { Table, PageHeader } from 'antd';
-import { queryList } from './services';
+import { Table, PageHeader, Button } from 'antd';
+import { queryList, queryClassList } from './services';
 import { ROUTE_HOME } from './constants';
 
 export default () => {
   const [data, setData] = useState([]);
+  const [classList, setClassList] = useState([]);
 
   useEffect(() => {
-    queryList().then((res) => {
-      console.log(res);
+    queryClassList().then((res) => {
       if (res.status === 200) {
-        setData(res.data);
+        setClassList(res.data);
+        queryList().then((res) => {
+          if (res.status === 200) {
+            setData(res.data);
+          }
+        });
       }
     });
   }, []);
 
   function goTo(record) {
     const { id } = record;
-    history.push(`${ROUTE_HOME}/${id}`);
+    history.push({ pathname: `${ROUTE_HOME}/${id}`, params: { classList } });
+  }
+  function handleAdd() {
+    history.push({ pathname: `${ROUTE_HOME}/add`, params: { classList } });
+  }
+  function renderClass(value) {
+    const classItem = classList.find((item) => item.id === Number(value));
+    return classItem?.name;
   }
   const columns = [
     {
@@ -39,6 +51,7 @@ export default () => {
     {
       title: '班级',
       dataIndex: 'classId',
+      render: (value) => renderClass(value),
     },
     {
       title: '小组',
@@ -51,7 +64,14 @@ export default () => {
   ];
   return (
     <>
-      <PageHeader title="学生列表" />
+      <PageHeader
+        title="学生列表"
+        extra={[
+          <Button type="primary" icon="plus" onClick={handleAdd}>
+            新增
+          </Button>,
+        ]}
+      />
       <Table dataSource={data} columns={columns} bordered />
     </>
   );
