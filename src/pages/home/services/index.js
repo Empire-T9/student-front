@@ -1,10 +1,11 @@
 import { authAxios } from '@/utils/axios';
 
 // 查询学生列表
-export function queryList() {
+export function queryList(params) {
   return authAxios({
     method: 'get',
     url: `/student`,
+    params,
   });
 }
 // 查询详情
