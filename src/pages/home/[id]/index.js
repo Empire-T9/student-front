@@ -124,7 +124,9 @@ export default Form.create()((props) => {
               {classList &&
                 classList.length &&
                 classList.map((item) => (
-                  <Option value={String(item.id)}>{item.name}</Option>
+                  <Option key={item.id} value={String(item.id)}>
+                    {item.name}
+                  </Option>
                 ))}
             </Select>,
           )}
