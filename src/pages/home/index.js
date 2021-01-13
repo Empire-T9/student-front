@@ -11,7 +11,7 @@ export default () => {
   const [count, setCount] = useState(0);
   const [classList, setClassList] = useState([]);
   const [classId, setClassId] = useState('1');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState(null);
 
   useEffect(() => {
     queryClassList().then((res) => {
