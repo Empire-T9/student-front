@@ -3,7 +3,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "umi dev",
-    "build": "umi build",
+    "start:prod": "cross-env UMI_ENV=prod umi dev",
+    "build": "cross-env UMI_ENV=prod umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -25,6 +26,7 @@
     "antd": "^3.x",
     "axios": "^0.21.1",
     "compression-webpack-plugin": "^6.1.1",
+    "cross-env": "^7.0.3",
     "umi": "^3.3.3"
   },
   "devDependencies": {
